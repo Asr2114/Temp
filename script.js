@@ -50,6 +50,12 @@ const foreverBtn = document.getElementById('foreverBtn');
 // Forever Section
 const petalsContainer = document.getElementById('petalsContainer');
 
+// Music
+const bgMusic = document.getElementById('bgMusic');
+const musicToggle = document.getElementById('musicToggle');
+const musicIcon = document.getElementById('musicIcon');
+let isMusicPlaying = false;
+
 // ==================== INITIALIZATION ====================
 document.addEventListener('DOMContentLoaded', () => {
     createFloatingHearts();
@@ -58,28 +64,87 @@ document.addEventListener('DOMContentLoaded', () => {
     initCoupons();
     initQuiz();
     createPetals();
+    initMusic();
 });
+
+// ==================== BACKGROUND MUSIC ====================
+function initMusic() {
+    // Set initial volume
+    bgMusic.volume = 0.3;
+    
+    // Music toggle button click
+    musicToggle.addEventListener('click', toggleMusic);
+    
+    // Try to autoplay on first user interaction
+    const startMusicOnInteraction = () => {
+        if (!isMusicPlaying) {
+            playMusic();
+        }
+        document.removeEventListener('click', startMusicOnInteraction);
+        document.removeEventListener('touchstart', startMusicOnInteraction);
+    };
+    
+    document.addEventListener('click', startMusicOnInteraction);
+    document.addEventListener('touchstart', startMusicOnInteraction);
+}
+
+function toggleMusic() {
+    if (isMusicPlaying) {
+        pauseMusic();
+    } else {
+        playMusic();
+    }
+}
+
+function playMusic() {
+    bgMusic.play().then(() => {
+        isMusicPlaying = true;
+        musicToggle.classList.add('playing');
+        musicToggle.classList.remove('muted');
+        musicIcon.textContent = '🎵';
+    }).catch(err => {
+        console.log('Autoplay prevented:', err);
+    });
+}
+
+function pauseMusic() {
+    bgMusic.pause();
+    isMusicPlaying = false;
+    musicToggle.classList.remove('playing');
+    musicToggle.classList.add('muted');
+    musicIcon.textContent = '🔇';
+}
 
 // ==================== FLOATING HEARTS BACKGROUND ====================
 function createFloatingHearts() {
     const hearts = ['💕', '💖', '💗', '💓', '💝', '💘', '❤️', '🩷', '🤍'];
-    const colors = ['#f8c8d8', '#f48fb1', '#e1bee7', '#f06292', '#ec407a'];
+    
+    // Reduce frequency on mobile for better performance
+    const isMobile = window.innerWidth <= 768;
+    const interval = isMobile ? 800 : 500;
+    const maxHearts = isMobile ? 15 : 30;
+    let heartCount = 0;
     
     setInterval(() => {
+        // Limit total hearts on screen
+        if (heartCount >= maxHearts) return;
+        
         const heart = document.createElement('span');
         heart.className = 'floating-heart';
         heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
         heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.fontSize = (Math.random() * 1.5 + 0.8) + 'rem';
+        heart.style.fontSize = (Math.random() * (isMobile ? 1 : 1.5) + 0.8) + 'rem';
         heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
-        heart.style.opacity = Math.random() * 0.5 + 0.3;
+        heart.style.opacity = Math.random() * 0.4 + 0.2;
         
         floatingHeartsContainer.appendChild(heart);
+        heartCount++;
         
         setTimeout(() => {
             heart.remove();
+            heartCount--;
         }, 20000);
-    }, 500);
+    }, interval);
 }
 
 // ==================== PROPOSAL SECTION LOGIC ====================
@@ -235,6 +300,10 @@ function initCarousel() {
         const dot = document.createElement('div');
         dot.className = 'carousel-dot' + (index === 0 ? ' active' : '');
         dot.addEventListener('click', () => scrollToSlide(index));
+        dot.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            scrollToSlide(index);
+        });
         carouselDots.appendChild(dot);
     });
     
@@ -242,6 +311,8 @@ function initCarousel() {
     let isDragging = false;
     let startX;
     let scrollLeft;
+    let startTime;
+    let endX;
     
     carousel.addEventListener('mousedown', (e) => {
         isDragging = true;
@@ -268,24 +339,37 @@ function initCarousel() {
         carousel.scrollLeft = scrollLeft - walk;
     });
     
-    // Touch support
+    // Enhanced Touch support with momentum
     carousel.addEventListener('touchstart', (e) => {
         startX = e.touches[0].pageX - carousel.offsetLeft;
         scrollLeft = carousel.scrollLeft;
-    });
+        startTime = Date.now();
+    }, { passive: true });
     
     carousel.addEventListener('touchmove', (e) => {
         const x = e.touches[0].pageX - carousel.offsetLeft;
-        const walk = (x - startX) * 2;
+        endX = x;
+        const walk = (x - startX) * 1.5;
         carousel.scrollLeft = scrollLeft - walk;
-    });
+    }, { passive: true });
     
-    // Update dots on scroll
-    carousel.addEventListener('scroll', () => {
+    // Snap to nearest slide on touch end
+    carousel.addEventListener('touchend', () => {
         const slideWidth = slides[0].offsetWidth + 30;
         const currentIndex = Math.round(carousel.scrollLeft / slideWidth);
-        updateDots(currentIndex);
-    });
+        scrollToSlide(currentIndex);
+    }, { passive: true });
+    
+    // Update dots on scroll
+    let scrollTimeout;
+    carousel.addEventListener('scroll', () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            const slideWidth = slides[0].offsetWidth + 30;
+            const currentIndex = Math.round(carousel.scrollLeft / slideWidth);
+            updateDots(currentIndex);
+        }, 50);
+    }, { passive: true });
 }
 
 function scrollToSlide(index) {
@@ -610,18 +694,30 @@ foreverBtn.addEventListener('click', () => {
 function createPetals() {
     const petals = ['🌸', '🌺', '🌷', '💮', '🏵️'];
     
+    // Reduce frequency on mobile for better performance
+    const isMobile = window.innerWidth <= 768;
+    const interval = isMobile ? 600 : 400;
+    const maxPetals = isMobile ? 10 : 20;
+    let petalCount = 0;
+    
     setInterval(() => {
+        if (petalCount >= maxPetals) return;
+        
         const petal = document.createElement('span');
         petal.className = 'petal';
         petal.textContent = petals[Math.floor(Math.random() * petals.length)];
         petal.style.left = Math.random() * 100 + 'vw';
-        petal.style.fontSize = (Math.random() * 1 + 1) + 'rem';
+        petal.style.fontSize = (Math.random() * (isMobile ? 0.8 : 1) + 1) + 'rem';
         petal.style.animationDuration = (Math.random() * 5 + 8) + 's';
         
         petalsContainer.appendChild(petal);
+        petalCount++;
         
-        setTimeout(() => petal.remove(), 13000);
-    }, 400);
+        setTimeout(() => {
+            petal.remove();
+            petalCount--;
+        }, 13000);
+    }, interval);
 }
 
 // ==================== REVEAL ANIMATIONS ====================
