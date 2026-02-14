@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Valentine 💕</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Floating Hearts Background -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
+    <!-- Pink Glow Overlay -->
+    <div class="pink-overlay" id="pinkOverlay"></div>
+    
+    <!-- Heart Burst Container -->
+    <div class="heart-burst" id="heartBurst"></div>
+
+    <!-- ==================== SECTION 1: PROPOSAL ==================== -->
+    <section class="section proposal-section" id="proposalSection">
+        <div class="proposal-card glass-card">
+            <div class="gif-container" id="proposalGif">
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDd5Y3ZrOWpqNXA0bTFmNHJjNnRyMnp5OGtqaWYyYm5zbGJqYmdubiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MDJ9IbxxvDUQM/giphy.gif" alt="Cute proposal gif" id="proposalGifImg">
+            </div>
+            <h1 class="proposal-heading" id="proposalHeading">Rakshita, My Princesss, Will You Be My Valentine? 🥺💖</h1>
+            <p class="proposal-subtext" id="proposalSubtext">My love, my chiku, my rasmalai, my chidiyaa, my bachaa… life is softer with you 💕</p>
+            <div class="button-container" id="buttonContainer">
+                <button class="btn yes-btn" id="yesBtn">YES 💕</button>
+                <button class="btn no-btn" id="noBtn">NO 💔</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 2: CELEBRATION ==================== -->
+    <section class="section celebration-section" id="celebrationSection">
+        <div class="celebration-content">
+            <h1 class="celebration-heading reveal-element">YAYYYYYY MY BABYYY 💕😭</h1>
+            <div class="nickname-sequence" id="nicknameSequence">
+                <span class="nickname" data-delay="0">My Rakshita</span>
+                <span class="nickname" data-delay="1">My Love</span>
+                <span class="nickname" data-delay="2">My Chiku</span>
+                <span class="nickname" data-delay="3">My Rasmalai</span>
+                <span class="nickname" data-delay="4">My Princesss</span>
+                <span class="nickname" data-delay="5">My Chidiyaa</span>
+                <span class="nickname" data-delay="6">My Bachaa</span>
+            </div>
+            <div class="photo-frame reveal-element">
+                <div class="sparkle-overlay"></div>
+                <img src="assets/WhatsApp Image 2025-04-12 at 16.49.00.jpeg" alt="Her beautiful photo" class="her-photo" id="herPhoto">
+                <div class="frame-glow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 3: CAROUSEL ==================== -->
+    <section class="section carousel-section" id="carouselSection">
+        <h2 class="section-title reveal-element">Our Beautiful Moments 💕</h2>
+        <div class="carousel-wrapper">
+            <div class="carousel" id="carousel">
+                <div class="carousel-slide" data-caption="Forever my Rakshita 💕">
+                    <img src="assets/WhatsApp Image 2025-09-12 at 14.21.21.jpeg" alt="Memory 1">
+                    <p class="slide-caption">Forever my Rakshita 💕</p>
+                </div>
+                <div class="carousel-slide" data-caption="My sweet Rasmalai 🍮">
+                    <img src="assets/WhatsApp Image 2025-09-12 at 15.43.22.jpeg" alt="Memory 2">
+                    <p class="slide-caption">My sweet Rasmalai 🍮</p>
+                </div>
+                <div class="carousel-slide" data-caption="My Princesss always 👑">
+                    <img src="assets/WhatsApp Image 2026-02-14 at 10.20.25.jpeg" alt="Memory 3">
+                    <p class="slide-caption">My Princesss always 👑</p>
+                </div>
+                <div class="carousel-slide" data-caption="My little Chidiyaa 🐦">
+                    <img src="assets/WhatsApp Image 2026-02-14 at 10.20.26.jpeg" alt="Memory 4">
+                    <p class="slide-caption">My little Chidiyaa 🐦</p>
+                </div>
+                <div class="carousel-slide" data-caption="My Chiku forever 💖">
+                    <img src="assets/WhatsApp Image 2026-02-14 at 10.20.26 (1).jpeg" alt="Memory 5">
+                    <p class="slide-caption">My Chiku forever 💖</p>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-dots" id="carouselDots"></div>
+    </section>
+
+    <!-- ==================== SECTION 4: COUPONS ==================== -->
+    <section class="section coupons-section" id="couponsSection">
+        <h2 class="section-title reveal-element">Love Coupons for You 💝</h2>
+        <div class="coupons-grid">
+            <div class="coupon glass-card reveal-element" data-type="hug" data-claimed="false">
+                <div class="coupon-icon">🤗</div>
+                <h3 class="coupon-title">Unlimited Hugs</h3>
+                <p class="coupon-desc">Redeemable anytime, anywhere</p>
+                <button class="coupon-btn">Claim Now</button>
+                <div class="coupon-animation hug-animation">
+                    <span class="arm left-arm">🤚</span>
+                    <span class="arm right-arm">✋</span>
+                </div>
+                <div class="claimed-badge">CLAIMED BY Rakshita 💕</div>
+            </div>
+            <div class="coupon glass-card reveal-element" data-type="kiss" data-claimed="false">
+                <div class="coupon-icon">💋</div>
+                <h3 class="coupon-title">1000 Kisses</h3>
+                <p class="coupon-desc">Starting count: 1000</p>
+                <button class="coupon-btn">Claim Now</button>
+                <div class="coupon-animation kiss-animation" id="kissAnimation"></div>
+                <div class="claimed-badge">CLAIMED BY Rakshita 💕</div>
+            </div>
+            <div class="coupon glass-card reveal-element" data-type="movie" data-claimed="false">
+                <div class="coupon-icon">🎬</div>
+                <h3 class="coupon-title">Movie Night</h3>
+                <p class="coupon-desc">Your pick, my treat</p>
+                <button class="coupon-btn">Claim Now</button>
+                <div class="coupon-animation movie-animation" id="movieAnimation"></div>
+                <div class="claimed-badge">CLAIMED BY Rakshita 💕</div>
+            </div>
+            <div class="coupon glass-card reveal-element" data-type="call" data-claimed="false">
+                <div class="coupon-icon">🌙</div>
+                <h3 class="coupon-title">Late Night Calls</h3>
+                <p class="coupon-desc">Unlimited midnight conversations</p>
+                <button class="coupon-btn">Claim Now</button>
+                <div class="coupon-animation call-animation">
+                    <span class="moon">🌙</span>
+                    <span class="stars">✨</span>
+                </div>
+                <div class="claimed-badge">CLAIMED BY Rakshita 💕</div>
+            </div>
+            <div class="coupon glass-card reveal-element" data-type="forehead" data-claimed="false">
+                <div class="coupon-icon">💕</div>
+                <h3 class="coupon-title">Random Forehead Kisses</h3>
+                <p class="coupon-desc">Expect the unexpected</p>
+                <button class="coupon-btn">Claim Now</button>
+                <div class="coupon-animation forehead-animation">
+                    <span class="heart-float">💕</span>
+                </div>
+                <div class="claimed-badge">CLAIMED BY Rakshita 💕</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 5: LOVE LETTER ==================== -->
+    <section class="section letter-section" id="letterSection">
+        <h2 class="section-title reveal-element">A Letter For You 💌</h2>
+        <div class="envelope-container reveal-element" id="envelopeContainer">
+            <div class="envelope" id="envelope">
+                <div class="envelope-flap"></div>
+                <div class="envelope-body">
+                    <div class="heart-stamp" id="heartStamp">💖</div>
+                </div>
+            </div>
+            <div class="letter" id="letter">
+                <div class="letter-content" id="letterContent">
+                    <p class="letter-text">
+                        My Rakshita, My Love, My Chiku, My Rasmalai,<br>
+                        My Princesss, My Chidiyaa, My Bachaa...<br><br>
+                        From the day you entered my life,<br>
+                        everything became brighter.<br><br>
+                        You are my peace,<br>
+                        my comfort,<br>
+                        my forever.<br><br>
+                        
+                        iloveyouuuu so muchhhhh babyyyy<br><br>
+                        I choose you in every lifetime.<br><br>
+                        <span class="letter-signature">Forever Yours 💕</span>
+                    </p>
+                </div>
+                <div class="letter-piece left-piece" id="leftPiece"></div>
+                <div class="letter-piece right-piece" id="rightPiece"></div>
+                <div class="letter-buttons" id="letterButtons">
+                    <button class="btn keep-btn" id="keepBtn">Keep It Safe 💌</button>
+                    <button class="btn tear-btn" id="tearBtn">Tear It 😢</button>
+                </div>
+                <div class="broken-heart-msg" id="brokenHeartMsg">
+                    <p>You broke my heart 💔</p>
+                    <button class="btn feviquick-btn" id="feviquickBtn">Fix with Feviquick 🩹</button>
+                </div>
+                <div class="healed-heart-msg" id="healedHeartMsg">
+                    <p>My heart is healed by Rakshita 💖</p>
+                </div>
+            </div>
+        </div>
+        <p class="letter-hint" id="letterHint">Click the envelope to open 💕</p>
+    </section>
+
+    <!-- ==================== SECTION 6: QUIZ ==================== -->
+    <section class="section quiz-section" id="quizSection">
+        <h2 class="section-title reveal-element">Quiz for you 😚</h2>
+        <div class="quiz-container">
+            <!-- Question 1 -->
+            <div class="quiz-card glass-card reveal-element" id="quiz1" data-correct="0" data-answered="false">
+                <h3 class="quiz-question">Boss kon hai Relationship m? 👑</h3>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-index="0">Obviously You</button>
+                    <button class="quiz-option" data-index="1">Me</button>
+                    <button class="quiz-option" data-index="2">Koi nahi</button>
+                </div>
+                <p class="quiz-feedback correct-feedback">Arreeee ooo Corrrect hai par kese boss banre ho 💖</p>
+                <p class="quiz-feedback wrong-feedback">Wrong answer. Try again chiku 😏</p>
+            </div>
+            <!-- Question 2 -->
+            <div class="quiz-card glass-card reveal-element" id="quiz2" data-correct="1" data-answered="false">
+                <h3 class="quiz-question">Who fights a lot in this relationship? 😅</h3>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-index="0">Always You</button>
+                    <button class="quiz-option" data-index="1">No One</button>
+                    <button class="quiz-option" data-index="2">Me</button>
+                </div>
+                <p class="quiz-feedback correct-feedback">Correct! Of course no one my princesss 💖</p>
+                <p class="quiz-feedback wrong-feedback">Wrong answer. Try again chiku 😏</p>
+            </div>
+            <!-- Question 3 -->
+            <div class="quiz-card glass-card reveal-element" id="quiz3" data-correct="1" data-answered="false">
+                <h3 class="quiz-question">Where do I plan to spend the rest of my life? 💕</h3>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-index="0">Paris</button>
+                    <button class="quiz-option" data-index="1">In Your Heart</button>
+                    <button class="quiz-option" data-index="2">Alone</button>
+                </div>
+                <p class="quiz-feedback correct-feedback">Correct! Of course in your heart my princesss 💖</p>
+                <p class="quiz-feedback wrong-feedback">Wrong answer. Try again chiku 😏</p>
+            </div>
+        </div>
+        <button class="btn forever-btn" id="foreverBtn">Go to Forever 💞</button>
+    </section>
+
+    <!-- ==================== SECTION 7: FOREVER ENDING ==================== -->
+    <section class="section forever-section" id="foreverSection">
+        <div class="petals-container" id="petalsContainer"></div>
+        <h2 class="forever-heading reveal-element">You are my forever Rakshita 💙❤️</h2>
+        <div class="collage-container">
+            <div class="collage-item reveal-element">
+                <img src="assets/WhatsApp Image 2026-02-14 at 10.20.27.jpeg" alt="Us 1">
+            </div>
+            <div class="collage-item reveal-element">
+                <img src="assets/WhatsApp Image 2026-02-14 at 10.20.27 (1).jpeg" alt="Us 2">
+            </div>
+            <div class="collage-item reveal-element">
+                <img src="assets/WhatsApp Image 2026-02-14 at 10.20.28.jpeg" alt="Us 3">
+            </div>
+        </div>
+        <div class="forever-text reveal-element">
+            <p>
+                I love you more than words can say.<br>
+                No matter where life takes us,<br>
+                my heart will always choose you.<br>
+                Thank you for being my peace,<br>
+                my smile,<br>
+                my love.<br><br>
+                <span class="highlight">Happy Valentine's Day my rasmalai 💕</span>
+            </p>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
