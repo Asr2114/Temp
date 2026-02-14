@@ -69,26 +69,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ==================== BACKGROUND MUSIC ====================
 function initMusic() {
+    if (!bgMusic || !musicToggle || !musicIcon) {
+        console.log('Music elements not found');
+        return;
+    }
+    
     // Set initial volume
-    bgMusic.volume = 0.3;
+    bgMusic.volume = 0.4;
     
-    // Music toggle button click
-    musicToggle.addEventListener('click', toggleMusic);
+    // Initial state - muted
+    musicToggle.classList.add('muted');
     
-    // Try to autoplay on first user interaction
-    const startMusicOnInteraction = () => {
-        if (!isMusicPlaying) {
-            playMusic();
-        }
-        document.removeEventListener('click', startMusicOnInteraction);
-        document.removeEventListener('touchstart', startMusicOnInteraction);
-    };
+    // Music toggle button click - using event with stopPropagation
+    musicToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleMusic();
+    });
     
-    document.addEventListener('click', startMusicOnInteraction);
-    document.addEventListener('touchstart', startMusicOnInteraction);
+    // Also handle touch for mobile
+    musicToggle.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleMusic();
+    });
+    
+    // Debug: Log when audio can play
+    bgMusic.addEventListener('canplaythrough', function() {
+        console.log('Audio ready to play');
+    });
+    
+    bgMusic.addEventListener('error', function(e) {
+        console.log('Audio error:', e);
+    });
 }
 
 function toggleMusic() {
+    console.log('Toggle clicked, current state:', isMusicPlaying);
     if (isMusicPlaying) {
         pauseMusic();
     } else {
@@ -97,17 +114,35 @@ function toggleMusic() {
 }
 
 function playMusic() {
-    bgMusic.play().then(() => {
-        isMusicPlaying = true;
-        musicToggle.classList.add('playing');
-        musicToggle.classList.remove('muted');
-        musicIcon.textContent = '🎵';
-    }).catch(err => {
-        console.log('Autoplay prevented:', err);
-    });
+    console.log('Attempting to play music...');
+    
+    // Reset audio to start if needed
+    if (bgMusic.currentTime > 0) {
+        bgMusic.currentTime = 0;
+    }
+    
+    const playPromise = bgMusic.play();
+    
+    if (playPromise !== undefined) {
+        playPromise.then(() => {
+            console.log('Music started playing');
+            isMusicPlaying = true;
+            musicToggle.classList.add('playing');
+            musicToggle.classList.remove('muted');
+            musicIcon.textContent = '🎵';
+        }).catch(err => {
+            console.log('Play error:', err);
+            // Try again with user gesture
+            isMusicPlaying = false;
+            musicToggle.classList.add('muted');
+            musicToggle.classList.remove('playing');
+            musicIcon.textContent = '🔇';
+        });
+    }
 }
 
 function pauseMusic() {
+    console.log('Pausing music');
     bgMusic.pause();
     isMusicPlaying = false;
     musicToggle.classList.remove('playing');
